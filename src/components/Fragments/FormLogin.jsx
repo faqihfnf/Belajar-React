@@ -31,7 +31,7 @@ const FormLogin = () => {
     <form onSubmit={handleLogin}>
       <InputForm label="username" type="text" placeholder="John Doe" name="email" ref={usernameRef} />
       <InputForm label="password" type="password" placeholder="Enter Your Password" name="password" />
-      <Button color="bg-green-700 w-full  text-white" type="submit">
+      <Button color="bg-green-700 w-full text-white" type="submit">
         Login
       </Button>
       {loginFailed && <div className="text-red-500 text-center mt-5">{loginFailed}</div>}
