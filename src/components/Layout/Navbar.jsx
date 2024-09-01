@@ -3,12 +3,15 @@ import { useLogin } from "../../hook/useLogin";
 import Button from "../Elements/Button/Index";
 import { useContext, useEffect, useState } from "react";
 import { DarkMode } from "../../context/DarkMode";
+import { useTotalPrice } from "../../context/TotalPriceContext";
 
 const Navbar = () => {
   const username = useLogin();
   const { isDarkMode, setIsDarkMode } = useContext(DarkMode);
   const [totalCart, setTotalCart] = useState(0);
   const cart = useSelector((state) => state.cart.data);
+  const { total } = useTotalPrice();
+
   useEffect(() => {
     const sum = cart.reduce((acc, item) => acc + item.qty, 0);
     setTotalCart(sum);
@@ -26,7 +29,9 @@ const Navbar = () => {
       <Button color="bg-black ml-5 hover:bg-slate-700 text-white" onClick={handleLogout}>
         Logout
       </Button>
-      <div className="flex items-center bg-lime-500 text-black p-2 rounded-md ml-5 mr-5">{totalCart}</div>
+      <div className="flex items-center bg-lime-500 text-black p-2 rounded-md ml-5 mr-5">
+        item : {totalCart} | price : ${total}
+      </div>
       <Button color="bg-black hover:bg-slate-700 text-slate-300" className=" px-10   rounded" onClick={() => setIsDarkMode(!isDarkMode)}>
         {isDarkMode ? "☀️" : "🌙"}
       </Button>
